@@ -1,0 +1,37 @@
+{% extends 'orders/header.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        {% for meal in meals %}
+          <div class="card rounded-0" style="width: 18rem; margin: 20px;"> <!-- The col-sm-4 stuff is that if its on a small screen it will take up a third of the widths-->
+            <img src="{% if meal.image %}{{meal.image.url}}{% else %}{% static 'no-img-available.png' %}{% endif %}" class="card-img-top cat-img rounded-0" alt="image for meal item" style="width:100%;">
+            <div class="card-body">
+              <h5 class="card-title" >{{meal.title}}</h5>
+              <p class="card-text truncate-3">{{meal.sub_title|striptags}}</p>
+              <div class="container">
+		        <div class="rating-wrap">
+			      <div class="center">
+				    <fieldset class="rating">
+					  <input type="radio" id="star5_{{meal.title}}" name="{{meal.title}}" value="5"/><label for="star5_{{meal.title}}" class="full"></label>
+					  <input type="radio" id="star4.5_{{meal.title}}" name="{{meal.title}}" value="4.5"/><label for="star4.5_{{meal.title}}" class="half"></label>
+					  <input type="radio" id="star4_{{meal.title}}" name="{{meal.title}}" value="4"/><label for="star4_{{meal.title}}" class="full"></label>
+					  <input type="radio" id="star3.5_{{meal.title}}" name="{{meal.title}}" value="3.5"/><label for="star3.5_{{meal.title}}" class="half"></label>
+					  <input type="radio" id="star3_{{meal.title}}" name="{{meal.title}}" value="3"/><label for="star3_{{meal.title}}" class="full"></label>
+                      <input type="radio" id="star2.5_{{meal.title}}" name="{{meal.title}}" value="2.5"/><label for="star2.5_{{meal.title}}" class="half"></label>
+                      <input type="radio" id="star2_{{meal.title}}" name="{{meal.title}}" value="2"/><label for="star2_{{meal.title}}" class="full"></label>
+                      <input type="radio" id="star1.5_{{meal.title}}" name="{{meal.title}}" value="1.5"/><label for="star1.5_{{meal.title}}" class="half"></label>
+                      <input type="radio" id="star1_{{meal.title}}" name="{{meal.title}}" value="1"/><label for="star1_{{meal.title}}" class="full"></label>
+                      <input type="radio" id="star0.5_{{meal.title}}" name="{{meal.title}}" value="0.5"/><label for="star0.5_{{meal.title}}" class="half"></label>
+				    </fieldset>
+                      <input type="submit" value="Submit Review" class="btn btn-primary">
+			      </div>
+		        </div>
+	          </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}
+
